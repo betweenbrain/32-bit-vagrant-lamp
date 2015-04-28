@@ -1,22 +1,26 @@
 #!/usr/bin/env bash
 
 sudo apt-get update
-sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
 
-# Apache and PHP5
+# Apache
 sudo apt-get install -y apache2
+
+# Set server name to calm output
+sudo echo "ServerName localhost" > /etc/apache2/conf-available/httpd.conf
+sudo a2enconf httpd
+
+# PHP5
 sudo apt-get install -y php5
 
 # Enable PHP5 JSON
-sudo apt-get install php5-json
+sudo apt-get install -y php5-json
 sudo php5enmod json
-sudo service apache2 restart
 
 # Silent MySQL Install 
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password"
-sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password"
-sudo apt-get -y install mysql-server
-sudo apt-get install php5-mysql
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get install -y mysql-server-5.5
+sudo apt-get install -y php5-mysql
 
 # PHP tweaks
 sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 20M/g" /etc/php5/apache2/php.ini
@@ -48,7 +52,7 @@ sudo a2enmod rewrite
 sudo service apache2 restart
 
 # install git
-sudo apt-get -y install git
+sudo apt-get install -y git
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
