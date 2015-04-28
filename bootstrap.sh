@@ -36,6 +36,9 @@ mkdir /var/www/html/adminer
 mv latest.php /var/www/html/adminer/index.php
 chmod 755 /var/www/html/adminer/index.php
 
+# Remove default index.html file
+rm /var/www/html/index.html
+
 # setup hosts file
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
