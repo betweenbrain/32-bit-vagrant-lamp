@@ -1,8 +1,11 @@
 # About
+A simple 32-bit Vagrant LAMP stack, 100% automatic
+
+## Details
 * Serves the current directory as the web root, accessible at http://127.0.0.1:8080
 * Installs adminer at http://127.0.0.1:8080/adminer
 
-# Usage
+## Usage
 * Clone this repo to the project dir
 * `vagrant up`
 
