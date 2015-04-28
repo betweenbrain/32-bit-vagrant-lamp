@@ -19,7 +19,7 @@ sudo php5enmod json
 
 # Silent MySQL Install 
 export DEBIAN_FRONTEND=noninteractive
-sudo apt-get install -y mysql-server-5.5
+sudo -E apt-get install -q -y mysql-server-5.5
 sudo apt-get install -y php5-mysql
 
 # PHP tweaks
