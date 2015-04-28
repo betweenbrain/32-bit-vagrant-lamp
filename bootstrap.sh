@@ -17,7 +17,8 @@ sudo apt-get install -y php5
 sudo apt-get install -y php5-json
 sudo php5enmod json
 
-# Silent MySQL Install 
+# Silent MySQL Install
+# http://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-password-prompt#comment37966911_7740393
 export DEBIAN_FRONTEND=noninteractive
 sudo -E apt-get install -q -y mysql-server-5.5
 sudo apt-get install -y php5-mysql
