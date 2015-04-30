@@ -20,6 +20,9 @@ sudo php5enmod json
 # Install cURL
 sudo apt-get install -y curl libcurl3 libcurl3-dev php5-curl
 
+# Install APC
+sudo apt-get install php-apc
+
 # Silent MySQL Install
 # http://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-password-prompt#comment37966911_7740393
 export DEBIAN_FRONTEND=noninteractive
