@@ -21,7 +21,35 @@ sudo php5enmod json
 sudo apt-get install -y curl libcurl3 libcurl3-dev php5-curl
 
 # Install APC
-sudo apt-get install php-apc
+# sudo apt-get install php-apc
+
+# Required dependencies for make
+sudo apt-get install -y build-essential
+
+# Required dependencies for mailcatcher
+sudo apt-get install -y libsqlite3-dev ruby1.9.1-dev
+
+# Install mailcatcher
+sudo gem install mailcatcher
+
+# Add mailcatcher service
+sudo echo 'description "Mailcatcher"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+exec /usr/bin/env $(which mailcatcher) --foreground --http-ip=0.0.0.0' > /etc/init/mailcatcher.conf
+
+# Make php use it to send mail
+sudo echo "sendmail_path = /usr/bin/env $(which catchmail)" >> /etc/php5/mods-available/mailcatcher.ini
+
+# Notify php mod manager (5.5+)
+sudo php5enmod mailcatcher
+
+# Start mailcatcher now
+sudo service mailcatcher start
 
 # Silent MySQL Install
 # http://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-password-prompt#comment37966911_7740393
@@ -61,9 +89,12 @@ sudo a2enmod rewrite
 # restart apache
 sudo service apache2 restart
 
-# install git
+# Install git
 sudo apt-get install -y git
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+
+# Clean up old packages
+sudo apt-get autoremove
