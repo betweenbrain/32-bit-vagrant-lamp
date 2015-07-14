@@ -97,4 +97,4 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
 # Clean up old packages
-sudo apt-get autoremove
+sudo apt-get -y autoremove
