@@ -28,9 +28,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     group: "www-data",
     mount_options: ["dmode=775,fmode=664"]
 
-  # Increase VM Memory to resolve bug associated with MySQL 5.6 install
-  # See https://github.com/fideloper/Vaprobash/issues/335#issuecomment-44913379
+  # Vagrant box configurations 
   config.vm.provider "virtualbox" do |v|
+    # Increase VM Memory to resolve bug associated with MySQL 5.6 install
+    # See https://github.com/fideloper/Vaprobash/issues/335#issuecomment-44913379
     v.memory = 1024
     # Use host VPN 
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
