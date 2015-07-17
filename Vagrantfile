@@ -32,6 +32,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # See https://github.com/fideloper/Vaprobash/issues/335#issuecomment-44913379
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
+    # Use host VPN 
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
   # Basic LAMP server
